@@ -44,8 +44,8 @@ export const items = [
     icons: FaRegUserCircle,
     items: [
       {
-        title: 'User List',
-        url: '/user/user',
+        title: 'Users',
+        url: '/user/users',
         icon: CircleDashed,
       },
     ],
