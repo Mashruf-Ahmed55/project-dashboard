@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { ChevronRight, LayoutDashboard } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import {
   Collapsible,
   CollapsibleContent,
@@ -23,6 +24,7 @@ import {
 
 export function NavMain() {
   const pathName = usePathname();
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
   return (
     <SidebarGroup>
@@ -40,7 +42,13 @@ export function NavMain() {
           const Icon = item.icons;
 
           return (
-            <Collapsible key={item.title} asChild className="group/collapsible">
+            <Collapsible
+              open={openItem === item.title}
+              onOpenChange={(isOpen) => setOpenItem(isOpen ? item.title : null)}
+              key={item.title}
+              asChild
+              className="group/collapsible"
+            >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={item.title}>
