@@ -1,5 +1,6 @@
 import { AppSidebar } from '@/components/app-sidebar';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import Header from '@/components/main/Header';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -15,8 +16,8 @@ export default function RootLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
-        <SidebarTrigger />
+      <main className='w-full'>
+        <Header />
         {children}
       </main>
     </SidebarProvider>
