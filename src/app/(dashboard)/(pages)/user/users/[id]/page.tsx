@@ -26,12 +26,6 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 
-function unwrapParams(p: { id: string } | Promise<{ id: string }>) {
-  return typeof (p as any).then === 'function'
-    ? React.use(p as Promise<{ id: string }>)
-    : (p as { id: string });
-}
-
 // Sample permissions data
 const permissions = [
   { id: 'user', label: 'User' },
@@ -78,11 +72,9 @@ const stores = [
   'AffordableEssentials',
 ];
 
-export default function UserForm({
-  params,
-}: { params: { id: string } } | { params: Promise<{ id: string }> }) {
-  const { id } = unwrapParams(params);
+export default function UserForm({ params }: { params: { id: string } }) {
   const router = useRouter();
+  const { id } = params;
   const isNewUser = id === 'new';
   const [selectedPermissions, setSelectedPermissions] = useState<string[]>([
     'staff',
