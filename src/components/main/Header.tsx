@@ -1,7 +1,7 @@
 'use client';
 
 import { stores } from '@/constant';
-import { Codesandbox, LogOut, PlusCircle } from 'lucide-react';
+import { Codesandbox, PlusCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ModeToggle } from '../mode-toggle';
@@ -38,24 +38,11 @@ export default function Header() {
           </Link>
           <SelectStore />
           <ModeToggle />
-          <LogOutButton />
         </div>
       </div>
     </header>
   );
 }
-
-const LogOutButton = () => {
-  return (
-    <Button
-      size="icon"
-      variant="outline"
-      className="text-primary border-primary hover:bg-primary hover:text-primary-foreground shadow-none rounded-full"
-    >
-      <LogOut className="h-4 w-4" />
-    </Button>
-  );
-};
 
 const SelectStore = () => {
   const [value, setValue] = useState<string>('totalSkinStore');
