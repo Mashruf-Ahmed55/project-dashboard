@@ -71,10 +71,19 @@ const stores = [
   'Cambridge Capital',
   'AffordableEssentials',
 ];
+type Params = { id: string };
 
-export default function UserForm({ params }: { params: { id: string } }) {
+function isPromise(params: unknown): params is Promise<Params> {
+  return !!params && typeof (params as Promise<Params>).then === 'function';
+}
+
+export default function UserForm({
+  params,
+}: { params: Params } | { params: Promise<Params> }) {
   const router = useRouter();
-  const { id } = params;
+
+  const { id } = isPromise(params) ? React.use(params) : params;
+
   const isNewUser = id === 'new';
   const [selectedPermissions, setSelectedPermissions] = useState<string[]>([
     'staff',
